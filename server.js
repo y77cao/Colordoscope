@@ -9,7 +9,7 @@ const app = express();
 app.use(express.static('.react-ui/build'));
 
 app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, '.react-ui/build', 'index.html'));
+  res.sendFile(path.join(__dirname, './', 'index.html'));
 });
 
 const PORT = process.env.PORT || 3000;
