@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 export const processImage = (sourceImage) => {
         //console.log("in API:"+sourceImage);
-        var subscriptionKey = "64871b54ac19423aa74fa0a83ae66121";
+        var subscriptionKey = "342c93b020c341059db0a80359650bd4";
         var API_URL = "https://westus.api.cognitive.microsoft.com/vision/v1.0/analyze";
         var reader = new FileReader();
 
