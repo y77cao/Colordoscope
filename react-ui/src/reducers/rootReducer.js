@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 
-const resultReducer = (state = {isFetching: false, imgQuery: [], url: ''}, action) => {
+const resultReducer = (state = {isFetching: false, imgQuery: [], url: '', largeViewUrl: ''}, action) => {
   switch (action.type) {
     case 'REQUEST_QUERY':
       return Object.assign({}, state, {
@@ -20,6 +20,19 @@ const resultReducer = (state = {isFetching: false, imgQuery: [], url: ''}, actio
           isFetching: true,
           url: action.url
       })
+
+      case 'RENDER_LARGE_VIEW':
+        return Object.assign({}, state, {
+          isFetching: false,
+          largeViewUrl: action.largeViewUrl
+        })
+
+      case 'CANCEL_LARGE_VIEW':
+        return Object.assign({}, state, {
+          isFetching: false,
+          largeViewUrl: ''
+        })
+
     default:
       return state;
   }

@@ -3,9 +3,12 @@ import Dropzone from 'react-dropzone';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {fetchQueryAction} from "../actions/actions";
+import {renderLargeViewAction} from "../actions/actions";
+import {imgCancelAction} from "../actions/actions";
 import {Link} from 'react-router-dom';
 import {Result} from './result';
 import {Preview} from './preview';
+import {LargeView} from './largeView';
 import {css} from 'aphrodite';
 import {styles, dropzone} from '../styles/styles';
 import loading from '../styles/loading.gif';
@@ -15,15 +18,25 @@ export class Upload extends React.Component  {
   constructor(props) {
     super(props);
     this.handleDrop = this.handleDrop.bind(this);
+    this.handleImgClick =  this.handleImgClick.bind(this);
+    this.handleImgCancel = this.handleImgCancel.bind(this);
   }
 
   handleDrop(img) {
     this.props.dispatch(fetchQueryAction(img));
   }
 
+  handleImgClick(largeViewUrl) {
+    this.props.dispatch(renderLargeViewAction(largeViewUrl));
+  }
+
+  handleImgCancel() {
+    this.props.dispatch(imgCancelAction());
+  }
+
 
   render() {
-    const {isFetching, imgQuery, url} = this.props;
+    const {isFetching, imgQuery, url, largeViewUrl} = this.props;
     return (
      <section className={css(styles.full, styles.black)}>
       <div className={css(styles.rotateContainer, styles.center)}>
@@ -53,7 +66,8 @@ export class Upload extends React.Component  {
                </Dropzone>
 
              <Preview url={url} />
-             <Result query={imgQuery} />
+             <Result query={imgQuery} handleClick={this.handleImgClick} />
+             {largeViewUrl === ''? null: <LargeView largeViewUrl={largeViewUrl} handleCancel={this.handleImgCancel} />}
         </div>
 
       </section> 

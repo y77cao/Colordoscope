@@ -82,3 +82,16 @@ const renderAction = (img) => {
     .then(res => dispatch(receiveQueryAction(img, res)))
   }
 }
+
+ export const renderLargeViewAction = (largeViewUrl) => {
+  return {
+    type:'RENDER_LARGE_VIEW',
+    largeViewUrl
+  }
+}
+
+export const imgCancelAction = () => {
+  return {
+    type:'CANCEL_LARGE_VIEW',
+  }
+}

@@ -8,6 +8,7 @@ const mapStateToProps = (state) => {
 		 isFetching: state.result.isFetching,
 	     imgQuery: state.result.imgQuery,
 	     url: state.result.url,
+	     largeViewUrl: state.result.largeViewUrl
    }
 };
 
